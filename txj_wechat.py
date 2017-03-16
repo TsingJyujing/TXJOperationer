@@ -7,7 +7,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 itchat.auto_login()
 cookies_jar, opener_rtn = installOpener()
-loginWebsite(cookies_jar)
+#loginWebsite(cookies_jar)
 
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
@@ -28,9 +28,12 @@ def text_reply(msg):
         elif opr=="Q":
             return "Status:%s\nCode:%d" % selectcarLockState(terminal_id, car_id, cookies_jar)
     except:
-        loginWebsite(cookies_jar)
+        try:
+            loginWebsite(cookies_jar)
+        except:
+            print "登录失败，妈卖批~"
         return """
-指令错误，请使用如下指令：
+指令错误或者执行错误，请使用如下指令（或者重试）：
 CMD,[操作],[终端号],[车辆ID]
 操作类型：
 Q：查询锁车状态
