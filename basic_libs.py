@@ -11,7 +11,7 @@ def getTick():
     return datetime.datetime.now().isoformat(sep=" ")
 
 
-def urlOpen(url, retry_times=3, referer="", cookie="", postdata=None):
+def urlOpen(url, retry_times=1, referer="", cookie="", postdata=None):
     for i in range(retry_times):
         try:
             req_header = {
